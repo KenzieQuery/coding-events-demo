@@ -40,4 +40,11 @@ public class EventController {
         return "redirect:";
     }
 
+    @GetMapping("delete")
+    public String displayDeleteEventFrom(Model model){
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("events", EventData.getAll());
+        return "events/delete";
+    }
+
 }
