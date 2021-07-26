@@ -9,6 +9,8 @@ import java.util.Map;
 /**
  * Created by Chris Bay
  */
+//This entire class mimics the database//
+
 public class EventData {
 
     private static final Map<Integer, Event> events = new HashMap<>();

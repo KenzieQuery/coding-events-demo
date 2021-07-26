@@ -1,5 +1,9 @@
 package org.launchcode.codingevents.models;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -8,10 +12,14 @@ import java.util.Objects;
 /**
  * Created by Chris Bay
  */
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
+    //we no longer need the nextId because we are letting the database create the ID for us//
+    //private static int nextId = 1;//
 
     @NotBlank(message = "Name is required")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
@@ -26,18 +34,19 @@ public class Event {
 
     private EventType type;
 
-    public Event(String name, String description, String contactEmail, EventType type) {
-        this();
+    public Event(int id, String name, String description, String contactEmail, EventType type) {
+        //this();//can also be removed because it is not  being used to pull ID.//
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
         this.type = type;
     }
-
-    public Event() {
-        this.id = nextId;
-        nextId++;
-    }
+    //This constructor also is not needed because we are getting the ID from the Database//
+    //public Event() {
+        //this.id = nextId;
+        //nextId++;//
+        //However we do still need the constructor structure//
+    public Event() {}
 
     public String getName() {
         return name;
